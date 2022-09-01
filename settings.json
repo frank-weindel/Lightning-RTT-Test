@@ -1,14 +1,17 @@
 {
   "appSettings": {
     "stage": {
+      "precision": 0.5,
       "clearColor": "0x00000000",
-      "useImageWorker": true
+      "useImageWorker": true,
+      "readPixelsAfterDraw": false
     },
     "debug": false
   },
   "platformSettings": {
     "path": "./static",
     "log": true,
-    "showVersion": true
+    "showVersion": true,
+    "showFps": true
   }
 }

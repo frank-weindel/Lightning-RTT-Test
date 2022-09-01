@@ -5,6 +5,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@lightningjs/core": "file:lightningjs-core-2.7.0.tgz",
     "@lightningjs/sdk": "file:lightningjs-sdk-5.1.0.tgz"
   },
   "devDependencies": {

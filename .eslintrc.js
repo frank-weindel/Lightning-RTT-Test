@@ -16,7 +16,6 @@ module.exports = {
   ],
   rules: {
     quotes: [2, 'single', 'avoid-escape'],
-    semi: [2, 'never'],
     'no-extra-boolean-cast': 'off',
     'no-unused-vars': [
       1,
@@ -32,7 +31,7 @@ module.exports = {
         trailingComma: 'all',
         singleQuote: true,
         tabWidth: 2,
-        semi: false,
+        semi: true,
         printWidth: 100,
       },
     ],
@@ -42,4 +41,4 @@ module.exports = {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-}
+};
