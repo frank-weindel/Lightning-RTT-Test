@@ -12,7 +12,6 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
-    'prettier',
   ],
   rules: {
     quotes: [2, 'single', 'avoid-escape'],
@@ -25,6 +24,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/indent': 'off',
     'prettier/prettier': [
       'error',
       {

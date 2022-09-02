@@ -5,13 +5,16 @@
  *
  * @module
  */
-import '@lightningjs/sdk'
+import '@lightningjs/sdk';
 
 declare module '@lightningjs/sdk' {
   /**
    * Lightning Core Augmentations
    */
   namespace Lightning {
+    interface Stage {
+      __frameDelay: number;
+    }
     namespace Component {
       /**
        * These handlers augmented here will be _added_ to the existing default key handlers

@@ -18,49 +18,20 @@
  */
 import { Lightning, Utils } from '@lightningjs/sdk';
 
+// prettier-ignore
+type ContainerType =
+  | typeof Lightning.Element<
+    {
+      Logo: object;
+      Mystery: object;
+      Container: ContainerType
+    } & Lightning.Element.TemplateSpec
+  >;
+
 interface AppTemplateSpec extends Lightning.Component.TemplateSpec {
   Background: object;
   NestedTest: {
-    Container1: {
-      Container2: {
-        Container3: {
-          Container4: {
-            Container5: {
-              Container6: {
-                Container7: {
-                  Container8: {
-                    Container9: {
-                      Container10: {
-                        Container11: {
-                          Container12: {
-                            Container13: {
-                              Container14: {
-                                Container15: {
-                                  Container16: {
-                                    Container17: {
-                                      Container18: {
-                                        Container19: {
-                                          Logo: object;
-                                          Mystery: object;
-                                        };
-                                      };
-                                    };
-                                  };
-                                };
-                              };
-                            };
-                          };
-                        };
-                      };
-                    };
-                  };
-                };
-              };
-            };
-          };
-        };
-      };
-    };
+    Container: ContainerType;
   };
   ParallelTest: {
     SideContainer1: {
@@ -103,51 +74,11 @@ export class App
 {
   readonly Background = this.getByRef('Background')!;
   readonly NestedTest = this.getByRef('NestedTest')!;
-  readonly Container1 = this.NestedTest.getByRef('Container1')!;
-  readonly Container2 = this.Container1.getByRef('Container2')!;
-  readonly Container3 = this.Container2.getByRef('Container3')!;
-  readonly Container4 = this.Container3.getByRef('Container4')!;
-  readonly Container5 = this.Container4.getByRef('Container5')!;
-  readonly Container6 = this.Container5.getByRef('Container6')!;
-  readonly Container7 = this.Container6.getByRef('Container7')!;
-  readonly Container8 = this.Container7.getByRef('Container8')!;
-  readonly Container9 = this.Container8.getByRef('Container9')!;
-  readonly Container10 = this.Container9.getByRef('Container10')!;
-  readonly Container11 = this.Container10.getByRef('Container11')!;
-  readonly Container12 = this.Container11.getByRef('Container12')!;
-  readonly Container13 = this.Container12.getByRef('Container13')!;
-  readonly Container14 = this.Container13.getByRef('Container14')!;
-  readonly Container15 = this.Container14.getByRef('Container15')!;
-  readonly Container16 = this.Container15.getByRef('Container16')!;
-  readonly Container17 = this.Container16.getByRef('Container17')!;
-  readonly Container18 = this.Container17.getByRef('Container18')!;
-  readonly Container19 = this.Container18.getByRef('Container19')!;
   readonly nestedContainers: Lightning.Element[] = [
-    this,
+    this.NestedTest.getByRef('Container')!,
     this.NestedTest,
-    this.Container1,
-    this.Container2,
-    this.Container3,
-    this.Container4,
-    this.Container5,
-    this.Container6,
-    this.Container7,
-    this.Container8,
-    this.Container9,
-    this.Container10,
-    this.Container11,
-    this.Container12,
-    this.Container13,
-    this.Container14,
-    this.Container15,
-    this.Container16,
-    this.Container17,
-    this.Container18,
-    this.Container19,
-  ].reverse();
-
-  readonly Logo = this.Container19.getByRef('Logo')!;
-  readonly Mystery = this.Container19.getByRef('Mystery')!;
+    this,
+  ];
 
   readonly ParallelTest = this.getByRef('ParallelTest')!;
   readonly SideContainer1 = this.ParallelTest.getByRef('SideContainer1')!;
@@ -207,95 +138,23 @@ export class App
       NestedTest: {
         w: 1920,
         h: 1080,
-        Container1: {
+        Container: {
           w: 1920,
           h: 1080,
-          Container2: {
-            w: 1920,
-            h: 1080,
-            Container3: {
-              w: 1920,
-              h: 1080,
-              Container4: {
-                w: 1920,
-                h: 1080,
-                Container5: {
-                  w: 1920,
-                  h: 1080,
-                  Container6: {
-                    w: 1920,
-                    h: 1080,
-                    Container7: {
-                      w: 1920,
-                      h: 1080,
-                      Container8: {
-                        w: 1920,
-                        h: 1080,
-                        Container9: {
-                          w: 1920,
-                          h: 1080,
-                          Container10: {
-                            w: 1920,
-                            h: 1080,
-                            Container11: {
-                              w: 1920,
-                              h: 1080,
-                              Container12: {
-                                w: 1920,
-                                h: 1080,
-                                Container13: {
-                                  w: 1920,
-                                  h: 1080,
-                                  Container14: {
-                                    w: 1920,
-                                    h: 1080,
-                                    Container15: {
-                                      w: 1920,
-                                      h: 1080,
-                                      Container16: {
-                                        w: 1920,
-                                        h: 1080,
-                                        Container17: {
-                                          w: 1920,
-                                          h: 1080,
-                                          Container18: {
-                                            w: 1920,
-                                            h: 1080,
-                                            Container19: {
-                                              w: 1920,
-                                              h: 1080,
-                                              Logo: {
-                                                mountX: 0.5,
-                                                mountY: 1,
-                                                x: 960,
-                                                y: 600,
-                                                src: Utils.asset('images/logo.png'),
-                                              },
-                                              Mystery: {
-                                                x: 930,
-                                                y: 400,
-                                                w: 150,
-                                                h: 150,
-                                                scale: 0,
-                                                src: Utils.asset('images/mystery.png'),
-                                              },
-                                            },
-                                          },
-                                        },
-                                      },
-                                    },
-                                  },
-                                },
-                              },
-                            },
-                          },
-                        },
-                      },
-                    },
-                  },
-                },
-              },
-            },
+          Logo: {
+            mountX: 0.5,
+            mountY: 1,
+            x: 960,
+            y: 600,
+            src: Utils.asset('images/logo.png'),
+          },
+          Mystery: {
+            x: 930,
+            y: 400,
+            w: 150,
+            h: 150,
+            scale: 0,
+            src: Utils.asset('images/mystery.png'),
           },
         },
       },
@@ -336,6 +195,8 @@ export class App
   }
 
   override _init() {
+    // document.getElementsByTagName('canvas')[0]!.style.transformOrigin = 'left top';
+    // document.getElementsByTagName('canvas')[0]!.style.scale = '10';
     this.stage.__frameDelay = 0;
     // this.Background.animation({
     //   duration: 15,
@@ -353,11 +214,14 @@ export class App
     //   ],
     // }).start()
 
-    this.Logo.animation({
-      duration: 5,
-      repeat: -1,
-      actions: [{ p: 'scale', v: { 0: 1, 0.5: 2, 1: 1 } }],
-    }).start();
+    this.NestedTest.getByRef('Container')!
+      .getByRef('Logo')!
+      .animation({
+        duration: 5,
+        repeat: -1,
+        actions: [{ p: 'scale', v: { 0: 1, 0.5: 2, 1: 1 } }],
+      })
+      .start();
 
     this.sideContainers.forEach((Container) => {
       Container.getByRef('Logo')!
@@ -378,15 +242,18 @@ export class App
     //   ],
     // }).start();
 
-    // this.Mystery.animation({
-    //   duration: 5,
-    //   repeat: -1,
-    //   actions: [
-    //     { p: 'x', v: { 0: this.Mystery.x, 0.5: 1025, 1: this.Mystery.x } },
-    //     { p: 'y', v: { 0: this.Mystery.y, 0.5: 550, 1: this.Mystery.y } },
-    //     { p: 'scale', v: { 0: this.Mystery.scale, 0.5: 1, 1: this.Mystery.scale } },
-    //   ],
-    // }).start();
+    // this.NestedTest.getByRef('Container')!
+    //   .getByRef('Logo')!
+    //   .animation({
+    //     duration: 5,
+    //     repeat: -1,
+    //     actions: [
+    //       { p: 'x', v: { 0: this.Mystery.x, 0.5: 1025, 1: this.Mystery.x } },
+    //       { p: 'y', v: { 0: this.Mystery.y, 0.5: 550, 1: this.Mystery.y } },
+    //       { p: 'scale', v: { 0: this.Mystery.scale, 0.5: 1, 1: this.Mystery.scale } },
+    //     ],
+    //   })
+    //   .start();
     this.updateText();
   }
 
@@ -405,19 +272,12 @@ export class App
   }
 
   override _handleRight() {
-    const maxRtt = this.NestedTest.visible === true ? 21 : 10;
-    if (this.rttDepth < maxRtt) {
-      this.rttDepth++;
-    }
-    this.updateRttDepth();
+    this.updateRttDepth(+1);
     this.updateText();
   }
 
   override _handleLeft() {
-    if (this.rttDepth > 0) {
-      this.rttDepth--;
-    }
-    this.updateRttDepth();
+    this.updateRttDepth(-1);
     this.updateText();
   }
 
@@ -441,16 +301,50 @@ export class App
     }
   }
 
-  private updateRttDepth() {
-    const depth = this.rttDepth;
+  private updateRttDepth(change: -1 | 0 | 1 = 0) {
+    const maxRtt = this.NestedTest.visible === true ? 9999 : 10;
+
+    const oldDepth = this.rttDepth;
+    let newDepth = this.rttDepth + change;
+    if (newDepth < 0 || newDepth > maxRtt) {
+      change = 0;
+      newDepth = oldDepth;
+    } else {
+      this.rttDepth = newDepth;
+    }
     if (this.NestedTest.visible) {
+      console.log(
+        this.nestedContainers.length,
+        newDepth,
+        change === 1 && newDepth > this.nestedContainers.length,
+      );
+      if (change === 1 && newDepth > this.nestedContainers.length) {
+        const OuterContainer = this.NestedTest.getByRef('Container')!;
+        // Temporarily store inside of Background element
+        this.Background.add(OuterContainer);
+        // Remove original container
+        this.NestedTest.patch({
+          Container: undefined,
+        });
+        // Patch in a new container which contains the other container
+        this.NestedTest.patch({
+          Container: {
+            w: 1920,
+            h: 1080,
+            Container: OuterContainer,
+          },
+        });
+        const NewOuterContainer = this.NestedTest.getByRef('Container')!;
+        this.nestedContainers.unshift(NewOuterContainer);
+      }
+      console.log(this.nestedContainers);
       this.nestedContainers.forEach((Container, i) => {
-        Container.rtt = depth > i;
+        Container.rtt = newDepth > i;
       });
     } else {
       this.sideContainers.forEach((SideContainer, i) => {
         const Logo = SideContainer.getByRef('Logo')!;
-        if (depth > i) {
+        if (newDepth > i) {
           SideContainer.rtt = true;
           Logo.color = 0xff00ff00;
         } else {
@@ -458,7 +352,7 @@ export class App
           Logo.color = 0xffffffff;
         }
       });
-      this.rtt = depth >= 11;
+      this.rtt = newDepth >= 11;
     }
   }
 
